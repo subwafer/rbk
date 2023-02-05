@@ -6,10 +6,7 @@ Create a README.md file.
 ## TODOs
 
 - prompt user for
-    - project name
-    - summary
     - authors (multiple author support)
-        - name
         - role
         - email.
 
