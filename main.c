@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 char project_name[100];
 char summary[1024];
@@ -14,12 +15,15 @@ void create_readme_file(void) {
     }
 
     fputs("# Project Name\n\n## Abstract\n\n## Author(s)\n", file);
-
 }
 
 void prompt_for_project_name(void) {
     printf("Project name > ");
     fgets(project_name, 100, stdin);
+
+    int length = strlen(project_name);
+
+    project_name[length - 1] = '\0';
 
     printf("Project name: %s\n", project_name);
 }
@@ -27,6 +31,10 @@ void prompt_for_project_name(void) {
 void prompt_for_summary(void) {
     printf("Summary > ");
     fgets(summary, 1024, stdin);
+
+    int length = strlen(summary);
+
+    summary[length - 1] = '\0';
 
     printf("Summary: %s\n", summary);
 }
