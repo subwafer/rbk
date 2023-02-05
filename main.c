@@ -17,13 +17,15 @@ void create_readme_file(void) {
     fputs("# Project Name\n\n## Abstract\n\n## Author(s)\n", file);
 }
 
+void strip_newline(int length, char arr[]) {
+    arr[length - 1] = '\0';
+}
+
 void prompt_for_project_name(void) {
     printf("Project name > ");
     fgets(project_name, 100, stdin);
 
-    int length = strlen(project_name);
-
-    project_name[length - 1] = '\0';
+    strip_newline(strlen(project_name), project_name);
 
     printf("Project name: %s\n", project_name);
 }
@@ -32,9 +34,8 @@ void prompt_for_summary(void) {
     printf("Summary > ");
     fgets(summary, 1024, stdin);
 
-    int length = strlen(summary);
+    strip_newline(strlen(summary), summary);
 
-    summary[length - 1] = '\0';
 
     printf("Summary: %s\n", summary);
 }
