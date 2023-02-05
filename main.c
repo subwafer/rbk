@@ -18,7 +18,7 @@ void create_readme_file(void) {
 }
 
 void strip_newline(int length, char arr[]) {
-    if (arr[length] == '\n') {
+    if (arr[length - 1] == '\n') {
         arr[length - 1] = '\0';
     }
 }
