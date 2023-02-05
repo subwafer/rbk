@@ -3,6 +3,7 @@
 #include <string.h>
 
 struct project {
+    char README_FILE_PATH[300];
     char project_name[100];
     char summary[1024];
 
@@ -13,10 +14,10 @@ struct project {
     char authors[100][400];
 };
 
-void create_readme_file(char *file_path, struct project *p) {
+void create_readme_file(struct project *p) {
     FILE *file;
 
-    file = fopen(file_path, "w");
+    file = fopen(p->README_FILE_PATH, "w");
     if (file == NULL) {
         printf("ERROR: Unable to create file\n");
         exit(1);
@@ -115,15 +116,32 @@ void prompt_for_author_temp(struct project *p) {
     printf("Author Role: %s\n", p->author_role);
 }
 
-int main(void) {
+int main(int argc, char *argv[]) {
+    int DEBUG_MODE = 0;
+
     struct project p;
+
+    if (argc > 1) {
+        for (int i = 0; i < argc; i++) {
+            if (strcmp(argv[i], "--debug") != 0) {
+                DEBUG_MODE = 1;
+            }
+        }
+    }
+
+    if (DEBUG_MODE == 1) {
+        strcpy(p.README_FILE_PATH, "test_README.md");
+        printf(">>> DEBUG MODE ACTIVE. Creating file: %s<<<<\n", p.README_FILE_PATH);
+    } else {
+        strcpy(p.README_FILE_PATH, "README.md");
+    }
+
 
     prompt_for_project_name(&p);
     prompt_for_summary(&p);
-
     prompt_for_author_temp(&p);
 
-    create_readme_file("test_README.md", &p);
+    create_readme_file(&p);
 
     return 0;
 }

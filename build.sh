@@ -1,3 +1,3 @@
 gcc -o main main.c
 
-./main
+./main --debug
