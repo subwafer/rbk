@@ -10,6 +10,7 @@ struct project {
     char author_name[100];
     char author_email[200];
     char author_role[100];
+    char authors[100][400];
 };
 
 void create_readme_file(void) {
@@ -63,8 +64,21 @@ void prompt_for_author(struct project *p) {
 
         printf("Author Name: %s\n", p->author_name);
 
-        // TODO: author email
-        // TODO: author role
+
+        printf("Author email > ");
+        fgets(p->author_email, 200, stdin);
+
+        strip_newline(strlen(p->author_email), p->author_email);
+
+        printf("Author Email: %s\n", p->author_email);
+
+
+        printf("Author role > ");
+        fgets(p->author_role, 100, stdin);
+
+        strip_newline(strlen(p->author_role), p->author_role);
+
+        printf("Author Role: %s\n", p->author_role);
 
         counter++;
     }
