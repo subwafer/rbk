@@ -84,13 +84,38 @@ void prompt_for_author(struct project *p) {
     }
 }
 
+void prompt_for_author_temp(struct project *p) {
+    printf("Author name > ");
+    fgets(p->author_name, 100, stdin);
+
+    strip_newline(strlen(p->author_name), p->author_name);
+
+    printf("Author Name: %s\n", p->author_name);
+
+
+    printf("Author email > ");
+    fgets(p->author_email, 200, stdin);
+
+    strip_newline(strlen(p->author_email), p->author_email);
+
+    printf("Author Email: %s\n", p->author_email);
+
+
+    printf("Author role > ");
+    fgets(p->author_role, 100, stdin);
+
+    strip_newline(strlen(p->author_role), p->author_role);
+
+    printf("Author Role: %s\n", p->author_role);
+}
+
 int main(void) {
     struct project p;
 
     prompt_for_project_name(&p);
     prompt_for_summary(&p);
 
-    prompt_for_author(&p);
+    prompt_for_author_temp(&p);
 
     // create_readme_file();
 
