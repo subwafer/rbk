@@ -13,7 +13,7 @@ struct project {
     char authors[100][400];
 };
 
-void create_readme_file(void) {
+void create_readme_file(struct project *p) {
     FILE *file;
 
     file = fopen("test_README.md", "w");
@@ -22,7 +22,13 @@ void create_readme_file(void) {
         exit(1);
     }
 
-    fputs("# Project Name\n\n## Abstract\n\n## Author(s)\n", file);
+    // Desired output:
+    printf("# %s\n\n## Summary\n\n%s\n\n## Author(s)\n\n%s | %s | %s\n\n", 
+        p->project_name, p->summary, p->author_name, p->author_email, p->author_role);
+
+    fprintf(file, "# %s\n\n## Summary\n\n%s\n\n## Author(s)\n\n%s | %s | %s\n\n", 
+        p->project_name, p->summary, p->author_name, p->author_email, p->author_role);
+
 }
 
 void strip_newline(int length, char arr[]) {
@@ -117,7 +123,7 @@ int main(void) {
 
     prompt_for_author_temp(&p);
 
-    // create_readme_file();
+    create_readme_file(&p);
 
     return 0;
 }
