@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+char project_name[100];
+
 void create_readme_file(void) {
     FILE *file;
 
@@ -14,8 +16,18 @@ void create_readme_file(void) {
 
 }
 
+void prompt_for_project_name(void) {
+    printf("Project name > ");
+    fgets(project_name, 100, stdin);
+
+    printf("Project name: %s", project_name);
+}
+
 int main(void) {
-    create_readme_file();
+
+    prompt_for_project_name();
+
+    // create_readme_file();
 
     return 0;
 }
