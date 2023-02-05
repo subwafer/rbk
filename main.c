@@ -13,10 +13,10 @@ struct project {
     char authors[100][400];
 };
 
-void create_readme_file(struct project *p) {
+void create_readme_file(char *file_path, struct project *p) {
     FILE *file;
 
-    file = fopen("test_README.md", "w");
+    file = fopen(file_path, "w");
     if (file == NULL) {
         printf("ERROR: Unable to create file\n");
         exit(1);
@@ -123,7 +123,7 @@ int main(void) {
 
     prompt_for_author_temp(&p);
 
-    create_readme_file(&p);
+    create_readme_file("test_README.md", &p);
 
     return 0;
 }
