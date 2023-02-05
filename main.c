@@ -2,14 +2,15 @@
 #include <stdlib.h>
 #include <string.h>
 
-// TODO: Convert to struct: Project.
-char project_name[100];
-char summary[1024];
+struct project {
+    char project_name[100];
+    char summary[1024];
 
-int multiple_authors;
-char author_name[100];
-char author_email[200];
-char author_role[100];
+    int multiple_authors;
+    char author_name[100];
+    char author_email[200];
+    char author_role[100];
+};
 
 void create_readme_file(void) {
     FILE *file;
@@ -29,38 +30,38 @@ void strip_newline(int length, char arr[]) {
     }
 }
 
-void prompt_for_project_name(void) {
+void prompt_for_project_name(struct project *p) {
     printf("Project name > ");
-    fgets(project_name, 100, stdin);
+    fgets(p->project_name, 100, stdin);
 
-    strip_newline(strlen(project_name), project_name);
+    strip_newline(strlen(p->project_name), p->project_name);
 
-    printf("Project name: %s\n", project_name);
+    printf("Project name: %s\n", p->project_name);
 }
 
-void prompt_for_summary(void) {
+void prompt_for_summary(struct project *p) {
     printf("Summary > ");
-    fgets(summary, 1024, stdin);
+    fgets(p->summary, 1024, stdin);
 
-    strip_newline(strlen(summary), summary);
+    strip_newline(strlen(p->summary), p->summary);
 
 
-    printf("Summary: %s\n", summary);
+    printf("Summary: %s\n", p->summary);
 }
 
-void prompt_for_author(void) {
+void prompt_for_author(struct project *p) {
     int counter = 0;
     printf("How many authors? ");
-    scanf("%d", &multiple_authors);
+    scanf("%d", &p->multiple_authors);
     getchar();
 
-    while (multiple_authors > 1 && counter < multiple_authors) {
+    while (p->multiple_authors > 1 && counter < p->multiple_authors) {
         printf("Author name > ");
-        fgets(author_name, 100, stdin);
+        fgets(p->author_name, 100, stdin);
 
-        strip_newline(strlen(author_name), author_name);
+        strip_newline(strlen(p->author_name), p->author_name);
 
-        printf("Author Name: %s\n", author_name);
+        printf("Author Name: %s\n", p->author_name);
 
         // TODO: author email
         // TODO: author role
@@ -70,11 +71,12 @@ void prompt_for_author(void) {
 }
 
 int main(void) {
+    struct project p;
 
-    prompt_for_project_name();
-    prompt_for_summary();
+    prompt_for_project_name(&p);
+    prompt_for_summary(&p);
 
-    prompt_for_author();
+    prompt_for_author(&p);
 
     // create_readme_file();
 
