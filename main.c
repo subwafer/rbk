@@ -18,7 +18,9 @@ void create_readme_file(void) {
 }
 
 void strip_newline(int length, char arr[]) {
-    arr[length - 1] = '\0';
+    if (arr[length] == '\n') {
+        arr[length - 1] = '\0';
+    }
 }
 
 void prompt_for_project_name(void) {
