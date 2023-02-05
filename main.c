@@ -2,8 +2,14 @@
 #include <stdlib.h>
 #include <string.h>
 
+// TODO: Convert to struct: Project.
 char project_name[100];
 char summary[1024];
+
+int multiple_authors;
+char author_name[100];
+char author_email[200];
+char author_role[100];
 
 void create_readme_file(void) {
     FILE *file;
@@ -42,10 +48,33 @@ void prompt_for_summary(void) {
     printf("Summary: %s\n", summary);
 }
 
+void prompt_for_author(void) {
+    int counter = 0;
+    printf("How many authors? ");
+    scanf("%d", &multiple_authors);
+    getchar();
+
+    while (multiple_authors > 1 && counter < multiple_authors) {
+        printf("Author name > ");
+        fgets(author_name, 100, stdin);
+
+        strip_newline(strlen(author_name), author_name);
+
+        printf("Author Name: %s\n", author_name);
+
+        // TODO: author email
+        // TODO: author role
+
+        counter++;
+    }
+}
+
 int main(void) {
 
     prompt_for_project_name();
     prompt_for_summary();
+
+    prompt_for_author();
 
     // create_readme_file();
 
