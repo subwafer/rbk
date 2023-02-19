@@ -1,7 +1,6 @@
 # readyme
 
-Create a README.md file.
-
+Create a README.md file and a 'c' lang boilerplate.
 
 ## TODOs
 
