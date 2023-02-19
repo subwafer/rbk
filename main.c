@@ -85,6 +85,7 @@ void prompt_for_author_temp(struct project *p) {
 }
 
 void generate_c_boilerplate() {
+    // TODO: Create the 'example' directory if it is not found
     FILE *file;
 
     file = fopen("example/test_main.c", "w");
