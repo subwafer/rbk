@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <sys/stat.h>
 
 struct project {
     char README_FILE_PATH[300];
@@ -97,7 +98,9 @@ void generate_c_boilerplate() {
 void generate_build_file() {
     FILE *file;
 
-    file = fopen("example/test_build.sh", "w");
+    char file_path[] = "example/test_build.sh";
+
+    file = fopen(file_path, "w");
     if (file == NULL) {
         printf("ERROR: Unable to create builder file\n");
         exit(1);
@@ -115,6 +118,8 @@ void generate_build_file() {
     fprintf(file, "CFLAGS=\"-Wall -Wextra -std=c11 -pedantic -ggdb\"\n\n");
     fprintf(file, "$CC $CFLAGS -o main main.c\n\n");
     
+    // -> -rwxr-xr-x
+    chmod(file_path, S_IRWXU | S_IRGRP | S_IXGRP | S_IROTH | S_IXOTH);
 
     printf("Successfully Generated builder file\n");
 }
