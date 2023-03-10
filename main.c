@@ -4,6 +4,7 @@
 #include <sys/stat.h>
 
 struct project {
+    // TODO: Convert to pointers when relevant. From stack to heap.
     char README_FILE_PATH[300];
     char project_name[100];
     char summary[1024];
@@ -33,7 +34,8 @@ int main(int argc, char *argv[]) {
     int DEBUG_MODE = 0;
 
     struct project p;
-
+    // NOTE: Look into getopt GNU for posix func for reading cli args
+    // OR you can just write your own. argv is a pointer to pointer or a pointer to a char array
     if (argc > 1) {
         for (int i = 0; i < argc; i++) {
             if (strcmp(argv[i], "--debug") != 0) {
@@ -48,6 +50,8 @@ int main(int argc, char *argv[]) {
     } else {
         strcpy(p.README_FILE_PATH, "example/README.md");
     }
+
+    // TODO: Switch statement per args
 
     prompt_for_project_name(&p);
     prompt_for_summary(&p);
