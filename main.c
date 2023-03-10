@@ -4,6 +4,8 @@
 #include <sys/stat.h>
 #include <stdbool.h>
 
+bool DEBUG_MODE = false;
+
 struct project {
     // TODO: Convert to pointers when relevant. From stack to heap.
     char README_FILE_PATH[300];
@@ -37,14 +39,21 @@ void handle_cli_args(int argc, char **argv) {
     (void) argc;
     (void) argv;
 
+    /*
+    ** config command
+    ** Allow user to create templates.
+    ** example: rbk config --templates
+    **
+    ** example: rbk create . --template=cgui --sc=git
+    **
+     */
+
     printf("handle_cli_args not implemented!");
 }
 
-bool DEBUG_MODE = false;
-
 int main(int argc, char *argv[]) {
-
     struct project p;
+
     // NOTE: Look into getopt GNU for posix func for reading cli args
     // OR you can just write your own. argv is a pointer to pointer or a pointer to a char array
     // handle_cli_args(argc, argv);
