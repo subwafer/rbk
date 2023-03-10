@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <sys/stat.h>
+#include <stdbool.h>
 
 struct project {
     // TODO: Convert to pointers when relevant. From stack to heap.
@@ -30,21 +31,32 @@ void generate_build_file();
 // TODO: Create dirs
 // TODO: 2 modes: "Simple" for quick project. Or scaffold for my setup.
 
+void handle_cli_args(int argc, char **argv);
+
+void handle_cli_args(int argc, char **argv) {
+    (void) argc;
+    (void) argv;
+
+    printf("handle_cli_args not implemented!");
+}
+
+bool DEBUG_MODE = false;
+
 int main(int argc, char *argv[]) {
-    int DEBUG_MODE = 0;
 
     struct project p;
     // NOTE: Look into getopt GNU for posix func for reading cli args
     // OR you can just write your own. argv is a pointer to pointer or a pointer to a char array
+    // handle_cli_args(argc, argv);
     if (argc > 1) {
         for (int i = 0; i < argc; i++) {
             if (strcmp(argv[i], "--debug") != 0) {
-                DEBUG_MODE = 1;
+                DEBUG_MODE = true;
             }
         }
     }
 
-    if (DEBUG_MODE == 1) {
+    if (DEBUG_MODE == false) {
         strcpy(p.README_FILE_PATH, "example/test_README.md");
         printf(">>> DEBUG MODE ACTIVE. Creating file: %s<<<<\n", p.README_FILE_PATH);
     } else {
