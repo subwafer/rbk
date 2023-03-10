@@ -9,5 +9,3 @@ CC=gcc
 CFLAGS="-Wall -Wextra -std=c11 -pedantic -ggdb"
 
 $CC $CFLAGS -o main main.c
-
-./main --debug
