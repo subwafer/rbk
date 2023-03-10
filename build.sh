@@ -8,4 +8,4 @@ set -xe
 CC=gcc
 CFLAGS="-Wall -Wextra -std=c11 -pedantic -ggdb"
 
-$CC $CFLAGS -o main main.c
+$CC $CFLAGS -o rbk main.c

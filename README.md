@@ -1,8 +1,6 @@
-# readyme (rbasekit/rbk)
+# rbk (rbasekit)
 
 Create a README.md file and a 'c' lang boilerplate.
-
-name idea: rbasekit aka rbk
 
 ## TODOs
 
