@@ -23,6 +23,12 @@ void prompt_for_author_temp(struct project *p);
 void generate_c_boilerplate();
 void generate_build_file();
 
+// TODO: Refactor
+// TODO: create a banner in c code with info from user
+// TODO: Make this working in live environment (exe move and use)
+// TODO: Create dirs
+// TODO: 2 modes: "Simple" for quick project. Or scaffold for my setup.
+
 int main(int argc, char *argv[]) {
     int DEBUG_MODE = 0;
 
@@ -42,7 +48,6 @@ int main(int argc, char *argv[]) {
     } else {
         strcpy(p.README_FILE_PATH, "example/README.md");
     }
-
 
     prompt_for_project_name(&p);
     prompt_for_summary(&p);
@@ -64,11 +69,11 @@ void create_readme_file(struct project *p) {
         exit(1);
     }
 
+    // TODO: Separate this out to make it easier to read
     fprintf(file, "# %s\n\n## Summary\n\n%s\n\n## Author(s)\n\n%s | %s | %s\n\n",
         p->project_name, p->summary, p->author_name, p->author_email, p->author_role);
 
     printf("Successfully Generated README file\n");
-
 }
 
 void strip_newline(int length, char arr[]) {
@@ -132,7 +137,6 @@ void generate_c_boilerplate() {
     fprintf(file, "}\n");
 
     printf("Successfully Generated C boilerplate file\n");
-
 }
 
 void generate_build_file() {
