@@ -6,4 +6,4 @@ CC=clang
 CFLAGS="-Wall -Wextra -std=c11 -pedantic -ggdb"
 # CFLAGS="-Wall -Wextra -std=c11 -pedantic -ggdb -fsanitize=memory"
 
-$CC $CFLAGS -o rbk main.c
+$CC $CFLAGS -o main main.c

@@ -10,25 +10,22 @@ bool DEBUG_MODE = false;
 
 
 char *read_from_file(char *file_path, size_t *content_size);
+size_t generate_from_template(char *file_path, char *dest_path);
 
-// TODO: Refactor
-// TODO: create a banner in c code with info from user
 // TODO: Make this working in live environment (exe move and use)
 // TODO: Create dirs
-// TODO: 2 modes: "Simple" for quick project. Or scaffold for my setup.
 
 void handle_cli_args(int argc, char **argv);
-
 
 int main(int argc, char *argv[]) {
     (void) argc;
     (void) argv;
 
-    char *test_path = "./examples/templates/simplec";
-    size_t content_size = 0;
-    char *content = read_from_file(test_path, &content_size);
-
-    fwrite(content, 1, content_size, stdout);
+    // char *template_path = "./examples/templates/simplec";
+    // char *dest_path = "./test_main.c";
+    char *template_path = "./examples/templates/clangbuild";
+    char *dest_path = "./test_build.sh";
+    generate_from_template(template_path, dest_path);
 
     return EXIT_SUCCESS;
 }
@@ -107,6 +104,23 @@ char *read_from_file(char *file_path, size_t *content_size) {
         return NULL;
 }
 
+size_t generate_from_template(char *template_path, char *dest_path) {
+    size_t content_size = 0;
+    char *template_content = read_from_file(template_path, &content_size);
+
+    FILE *dest_file = fopen(dest_path, "w");
+
+    fprintf(stdout, "Creating from template %s to dest path: %s\n", template_path, dest_path);
+
+    // Will this create the file if it doesn't exist?
+    fwrite(template_content, 1, content_size, dest_file);
+
+    fprintf(stdout, "Completed writing template to file.\n");
+
+    if (dest_file) fclose(dest_file);
+
+    return content_size;
+}
 
 
 
