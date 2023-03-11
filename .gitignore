@@ -2,3 +2,4 @@ main
 rbk
 .vscode
 example/
+test_*
