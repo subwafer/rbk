@@ -12,8 +12,6 @@ size_t generate_from_template(char *file_path, char *dest_path);
 
 // TODO: Make this working in live environment (exe move and use)
 
-void handle_cli_args(int argc, char **argv);
-
 int main(int argc, char *argv[]) {
     if (argc > 0) {
         for (int i = 0; i < argc; i++) {
@@ -26,7 +24,6 @@ int main(int argc, char *argv[]) {
             }
         }
     }
-
 
     char *template_path = {0};
     char *dest_path = {0};
@@ -42,14 +39,6 @@ int main(int argc, char *argv[]) {
 
     generate_from_template(template_path, dest_path);
     return EXIT_SUCCESS;
-}
-
-void handle_cli_args(int argc, char **argv) {
-    (void) argc;
-    (void) argv;
-
-    // TODO: Create dirs for DEBUG mode: './examples'
-    printf("handle_cli_args not implemented!");
 }
 
 char *read_from_file(char *file_path, size_t *content_size) {
