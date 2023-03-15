@@ -11,20 +11,36 @@ char *read_from_file(char *file_path, size_t *content_size);
 size_t generate_from_template(char *file_path, char *dest_path);
 
 // TODO: Make this working in live environment (exe move and use)
-// TODO: Create dirs
 
 void handle_cli_args(int argc, char **argv);
 
 int main(int argc, char *argv[]) {
-    (void) argc;
-    (void) argv;
+    if (argc > 0) {
+        for (int i = 0; i < argc; i++) {
+            // rbk .
+            // rbk . -t=simplec
+            // rbk --DEBUG
+            if (strcmp(argv[i], "--DEBUG") == 0) {
+                printf("########DEBUG MODE ACTIVE############\n\n");
+                DEBUG_MODE = true;
+            }
+        }
+    }
 
-    // char *template_path = "./examples/templates/simplec";
-    // char *dest_path = "./test_main.c";
-    char *template_path = "./examples/templates/clangbuild";
-    char *dest_path = "./test_build.sh";
+
+    char *template_path = {0};
+    char *dest_path = {0};
+
+    if (DEBUG_MODE == true) {
+        // char *template_path = "./examples/templates/simplec";
+        // char *dest_path = "./test_main.c";
+        template_path = "./examples/templates/clangbuild";
+        dest_path = "./test_build.sh";
+    } else {
+        printf("CLI Args not implemented.\n");
+    }
+
     generate_from_template(template_path, dest_path);
-
     return EXIT_SUCCESS;
 }
 
@@ -32,6 +48,7 @@ void handle_cli_args(int argc, char **argv) {
     (void) argc;
     (void) argv;
 
+    // TODO: Create dirs for DEBUG mode: './examples'
     printf("handle_cli_args not implemented!");
 }
 
